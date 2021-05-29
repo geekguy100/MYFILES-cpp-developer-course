@@ -5,7 +5,6 @@ using namespace std;
 void valueChanged1(int num);
 void valueChanged2(int & num);
 void threeTimesN(int, int &);
-void test();
 
 int main()
 {
