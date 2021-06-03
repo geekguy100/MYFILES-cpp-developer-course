@@ -56,3 +56,16 @@ void sumArray(array<int, ARRAY_SIZE> nums, int & sum)
 	for (int num : nums)
 		sum += num;
 }
+
+// Let's not reinvent the wheel!
+// Instead of recreating our sumArray() function with slightly altered logic, consider the following alternative:
+//
+//
+//		void sumArray(array<int, ARRAY_SIZE> nums, int & sum)
+//		{
+//			sum = sumArray(nums);
+//		}
+//
+//
+// Notice how we make use of our pre-existing function to provide functionality to this one!
+// That way, we don't need to write duplicated code.
