@@ -2,10 +2,11 @@
 #include <array>
 using namespace std;
 
-// Need to define our ARRAY_SIZE variable up here since
+// Need to define our ARRAY_SIZE variable up here
 // so we can use it as an argument in our sumArray's array<> parameter.
 const int ARRAY_SIZE = 10;
 int sumArray(array<int, ARRAY_SIZE> nums);
+void sumArray(array<int, ARRAY_SIZE> nums, int & sum);
 
 int main()
 {
@@ -26,7 +27,11 @@ int main()
 		}
 	}
 
-	cout << "Sum of all numbers is " << sumArray(nums) << endl;
+	cout << "Sum of all numbers using sumArray(array<>) is " << sumArray(nums) << endl;
+
+	int sum;
+	sumArray(nums, sum);
+	cout << "Sum of all numbers using sumArray(array<>, int & sum) is " << sum << endl;
 
 
 	cout << endl << endl;
@@ -42,4 +47,12 @@ int sumArray(array<int, ARRAY_SIZE> nums)
 		sum += num;
 
 	return sum;
+}
+
+void sumArray(array<int, ARRAY_SIZE> nums, int & sum)
+{
+	sum = 0;
+
+	for (int num : nums)
+		sum += num;
 }
