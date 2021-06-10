@@ -129,6 +129,8 @@ void playTurn(bool xTurn, char board[ROWS][COLS], string & xBits, string & oBits
 
 	// Update the board with the player's character.
 	board[row][col] = playingChar;
+
+	cout << endl << endl;
 }
 
 // Sets the last player's playerBit to 1 at the last played row and col.
@@ -194,14 +196,12 @@ void gameLoop()
 // Returns true if the current player has won.
 bool checkForWin(char board[ROWS][COLS], bool xTurn, bool & xWin, const string playerBits)
 {
-	cout << endl << endl << playerBits << endl;
 	int playerNumPos = stoi(playerBits, nullptr, 2);
-	cout << playerNumPos << endl;
 	bool winner = false;
 
-	for (short winningPos : WINNING_POSITIONS)
+	for (int winningPos : WINNING_POSITIONS)
 	{
-		if (playerNumPos & winningPos == winningPos)
+		if ((playerNumPos & winningPos) == winningPos)
 		{
 			winner = true;
 			break;
