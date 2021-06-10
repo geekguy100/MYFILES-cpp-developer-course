@@ -1,16 +1,38 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 const int ROWS = 3;
 const int COLS = 3;
+const int BOARD_AREA = ROWS * COLS;
+const short WINNING_POSITIONS[]
+{
+	0b111000000,
+	0b100100100,
+	0b100010001,
+	0b010010010,
+	0b001010100,
+	0b001001001,
+	0b000111000,
+	0b000000111
+
+	//488,
+	//292,
+	//273,
+	//146,
+	//84,
+	//73,
+	//56,
+	//7
+};
 
 void drawBoard(char board[ROWS][COLS]);
-void init(char board[ROWS][COLS], char initChar = '\0');
-void playTurn(bool xTurn, char board[ROWS][COLS], short xBits[], short oBits[]);
+void init(char board[ROWS][COLS], string & xBits, string & oBits, char initChar = '\0');
+void playTurn(bool xTurn, char board[ROWS][COLS], string & xBits, string & oBits);
 void gameLoop();
-bool checkForWin(char board[ROWS][COLS], bool xTurn, bool & xWin);
-void updatePlayerBits(int row, int col, short playerBits[]);
+bool checkForWin(char board[ROWS][COLS], bool xTurn, bool & xWin, const string playerBits);
+void updatePlayerBits(int row, int col, string & playerBits);
 
 int main()
 {
@@ -45,7 +67,7 @@ void drawBoard(char board[ROWS][COLS])
 }
 
 // Initializes each character of the game board to an empty character,
-void init(char board[ROWS][COLS], char initChar)
+void init(char board[ROWS][COLS], string & xBits, string & oBits, char initChar)
 {
 	for (int i = 0; i < ROWS; ++i)
 	{
@@ -54,10 +76,16 @@ void init(char board[ROWS][COLS], char initChar)
 			board[i][j] = initChar;
 		}
 	}
+
+	for (int i = 0; i < BOARD_AREA; ++i)
+	{
+		xBits += "0";
+		oBits += "0";
+	}
 }
 
 // Gets the player's input.
-void playTurn(bool xTurn, char board[ROWS][COLS], short xBits[], short oBits[])
+void playTurn(bool xTurn, char board[ROWS][COLS], string & xBits, string & oBits)
 {
 	char playingChar;
 
@@ -104,11 +132,12 @@ void playTurn(bool xTurn, char board[ROWS][COLS], short xBits[], short oBits[])
 }
 
 // Sets the last player's playerBit to 1 at the last played row and col.
-void updatePlayerBits(int row, int col, short playerBits[])
+// A '1' means that the player has placed their piece at that location.
+void updatePlayerBits(int row, int col, string & playerBits)
 {
-	short pos{}; // Used to store the position of the bit; 
-				 // Used to store the converted ROW-COL position to a single integer position.
-
+	size_t pos{}; // Used to store the position of the bit; 
+				  // Used to store the converted ROW-COL position to a single integer position.
+	
 	bool complete = false; // True if we have calculated our 'pos' value.
 
 	for (int r = 0; r < ROWS; ++r)
@@ -129,31 +158,32 @@ void updatePlayerBits(int row, int col, short playerBits[])
 	}
 
 	// Flip the bit to 1 in the last played position.
-	playerBits[pos] = 1;
+	playerBits[pos] = '1';
 }
 
 // The core game loop. Executes all of the important game mechanics.
 void gameLoop()
 {
 	char board[ROWS][COLS];
-	const int BOARD_AREA = ROWS * COLS;
-	short xBits[BOARD_AREA]{};
-	short oBits[BOARD_AREA]{};
+	string xBits;
+	string oBits;
 
 	bool xTurn = true;
-	bool xWin;
+	bool xWin = false;
 	bool gameOver = false;
 
-	init(board);
+	init(board, xBits, oBits);
 	drawBoard(board);
 
 	while (!gameOver)
 	{
 		playTurn(xTurn, board, xBits, oBits);
 		drawBoard(board);
-		
-		if (checkForWin(board, xTurn, xWin))
-			gameOver = true;
+
+		if (xTurn)
+			gameOver = checkForWin(board, xTurn, xWin, xBits);
+		else
+			gameOver = checkForWin(board, xTurn, xWin, oBits);
 
 		xTurn = !xTurn;
 	}
@@ -161,7 +191,34 @@ void gameLoop()
 	cout << (xWin ? "X " : "O ") << " is the winner!" << endl;
 }
 
-bool checkForWin(char board[ROWS][COLS], bool xTurn, bool & xWin)
+// Returns true if the current player has won.
+bool checkForWin(char board[ROWS][COLS], bool xTurn, bool & xWin, const string playerBits)
 {
-	return false;
+	cout << endl << endl << playerBits << endl;
+	int playerNumPos = stoi(playerBits, nullptr, 2);
+	cout << playerNumPos << endl;
+	bool winner = false;
+
+	for (short winningPos : WINNING_POSITIONS)
+	{
+		if (playerNumPos & winningPos == winningPos)
+		{
+			winner = true;
+			break;
+		}
+	}
+
+	// If we have a winner and it was X's turn, 
+	// set xWin to true.
+	if (xTurn && winner)
+		xWin = true;
+
+	// Else if we have a winner, but it was not X's turn,
+	// set xWin to false. Meaning O is the winner.
+	// Not necessary since xWin = false by default, but I wanted this here
+	// for clarity's sake.
+	else if (winner)
+		xWin = false;
+
+	return winner;
 }
