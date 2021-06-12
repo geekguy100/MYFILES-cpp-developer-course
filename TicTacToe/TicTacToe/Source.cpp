@@ -27,12 +27,19 @@ const short WINNING_POSITIONS[]
 	//7
 };
 
+struct WinCondition
+{
+	enum Condition { X_WIN, O_WIN, CATS_GAME };
+	Condition condition;
+};
+
 void drawBoard(char board[ROWS][COLS]);
 void init(char board[ROWS][COLS], string & xBits, string & oBits, char initChar = '\0');
 void playTurn(bool xTurn, char board[ROWS][COLS], string & xBits, string & oBits);
 void gameLoop();
-bool checkForWin(char board[ROWS][COLS], bool xTurn, bool & xWin, const string playerBits);
+bool checkForWin(char board[ROWS][COLS], bool xTurn, WinCondition & winCondition, const string & playerBits, const string & otherBits);
 void updatePlayerBits(int row, int col, string & playerBits);
+bool boardFull(const string & xBits, const string & oBits);
 
 int main()
 {
@@ -171,7 +178,7 @@ void gameLoop()
 	string oBits;
 
 	bool xTurn = true;
-	bool xWin = false;
+	WinCondition winCondition;
 	bool gameOver = false;
 
 	init(board, xBits, oBits);
@@ -183,18 +190,23 @@ void gameLoop()
 		drawBoard(board);
 
 		if (xTurn)
-			gameOver = checkForWin(board, xTurn, xWin, xBits);
+			gameOver = checkForWin(board, xTurn, winCondition, xBits, oBits);
 		else
-			gameOver = checkForWin(board, xTurn, xWin, oBits);
+			gameOver = checkForWin(board, xTurn, winCondition, oBits, xBits);
 
 		xTurn = !xTurn;
 	}
 
-	cout << (xWin ? "X " : "O ") << " is the winner!" << endl;
+	if (winCondition.condition == winCondition.X_WIN)
+		cout << "X is the winner!" << endl;
+	else if (winCondition.condition = winCondition.O_WIN)
+		cout << "O is the winner!" << endl;
+	else
+		cout << "Cat's Game! No winner!" << endl;
 }
 
 // Returns true if the current player has won.
-bool checkForWin(char board[ROWS][COLS], bool xTurn, bool & xWin, const string playerBits)
+bool checkForWin(char board[ROWS][COLS], bool xTurn, WinCondition & winCondition, const string & playerBits, const string & otherBits)
 {
 	int playerNumPos = stoi(playerBits, nullptr, 2);
 	bool winner = false;
@@ -209,16 +221,29 @@ bool checkForWin(char board[ROWS][COLS], bool xTurn, bool & xWin, const string p
 	}
 
 	// If we have a winner and it was X's turn, 
-	// set xWin to true.
+	// set win condition to X_WIN.
 	if (xTurn && winner)
-		xWin = true;
+		winCondition.condition = winCondition.X_WIN;
 
 	// Else if we have a winner, but it was not X's turn,
-	// set xWin to false. Meaning O is the winner.
-	// Not necessary since xWin = false by default, but I wanted this here
-	// for clarity's sake.
+	// O is the winner.
 	else if (winner)
-		xWin = false;
+		winCondition.condition = winCondition.O_WIN;
+
+	// If there is no winner and the board is full,
+	// call a Cat's Game.
+	else if (boardFull(playerBits, otherBits))
+		winCondition.condition = winCondition.CATS_GAME;
 
 	return winner;
+}
+
+// Returns true if every space on the board is occupied.
+bool boardFull(const string & xBits, const string & oBits)
+{
+	int xBitsNum = stoi(xBits, nullptr, 2);
+	int oBitsNum = stoi(oBits, nullptr, 2);
+	int catsGameBits = 511;
+
+	return ((xBitsNum | oBitsNum) == catsGameBits);
 }
