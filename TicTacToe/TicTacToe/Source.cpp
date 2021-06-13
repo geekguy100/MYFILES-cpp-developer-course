@@ -108,6 +108,7 @@ void playTurn(bool xTurn, char board[ROWS][COLS], string & xBits, string & oBits
 	}
 
 	cout << "Please enter the row THEN the column, each from 0, 1, or 2, separated by a space." << endl;
+	cout << "INPUT: ";
 	int row{};
 	int col{};
 
@@ -123,6 +124,7 @@ void playTurn(bool xTurn, char board[ROWS][COLS], string & xBits, string & oBits
 	{
 		cout << "That location is already occupied." << endl;
 		cout << "Please enter the row THEN the column, each from 0, 1, or 2, separated by a space." << endl;
+		cout << "INPUT: ";
 
 		cin >> row;
 		cin >> col;
@@ -199,7 +201,7 @@ void gameLoop()
 
 	if (winCondition.condition == winCondition.X_WIN)
 		cout << "X is the winner!" << endl;
-	else if (winCondition.condition = winCondition.O_WIN)
+	else if (winCondition.condition == winCondition.O_WIN)
 		cout << "O is the winner!" << endl;
 	else
 		cout << "Cat's Game! No winner!" << endl;
@@ -233,7 +235,10 @@ bool checkForWin(char board[ROWS][COLS], bool xTurn, WinCondition & winCondition
 	// If there is no winner and the board is full,
 	// call a Cat's Game.
 	else if (boardFull(playerBits, otherBits))
+	{
 		winCondition.condition = winCondition.CATS_GAME;
+		winner = true;
+	}
 
 	return winner;
 }
