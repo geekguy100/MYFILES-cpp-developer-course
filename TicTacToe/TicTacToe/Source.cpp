@@ -239,11 +239,11 @@ bool checkForWin(char board[ROWS][COLS], bool xTurn, WinCondition & winCondition
 }
 
 // Returns true if every space on the board is occupied.
-bool boardFull(const string & xBits, const string & oBits)
+bool boardFull(const string & bitSetOne, const string & bitSetTwo)
 {
-	int xBitsNum = stoi(xBits, nullptr, 2);
-	int oBitsNum = stoi(oBits, nullptr, 2);
+	int bitSetOneNum = stoi(bitSetOne, nullptr, 2);
+	int bitSetTwoNum = stoi(bitSetTwo, nullptr, 2);
 	int catsGameBits = 511;
 
-	return ((xBitsNum | oBitsNum) == catsGameBits);
+	return ((bitSetOneNum | bitSetTwoNum) == catsGameBits);
 }
