@@ -6,6 +6,7 @@ using namespace std;
 const int ROWS = 3;
 const int COLS = 3;
 const int BOARD_AREA = ROWS * COLS;
+void test(int x);
 const short WINNING_POSITIONS[]
 {
 	0b111000000,
@@ -43,8 +44,8 @@ bool boardFull(const string & xBits, const string & oBits);
 
 int main()
 {
-	gameLoop();
-
+	//gameLoop();
+	test(4);
 	cout << endl << endl;
 	system("pause");
 	return 0;
