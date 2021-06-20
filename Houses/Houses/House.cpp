@@ -2,6 +2,31 @@
 #include <iostream>
 using namespace std;
 
+House::House()
+{
+	this->numStories = 1;
+	this->numWindows = 4;
+	this->color = "white";
+	this->name = "Unnamed House";
+}
+
+House::House(string name, int numStories, int numWindows, string color)
+{
+	this->name = name;
+	this->numStories = numStories;
+	this->numWindows = numWindows;
+	this->color = color;
+}
+
+House::~House()
+{
+	cout << getName() 
+		<< " with " 
+		<< numStories << " stories and " 
+		<< numWindows << " windows is being destroyed!" 
+		<< endl;
+}
+
 void House::setNumStories(int numStories)
 {
 	this->numStories = numStories;

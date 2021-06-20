@@ -8,6 +8,7 @@ int main()
 {
 	House myHouse;
 	House yourHouse;
+	House otherHouse("Eddie's House", 12, 100, "black");
 
 	myHouse.setNumStories(2);
 	myHouse.setNumWindows(6);
@@ -23,6 +24,7 @@ int main()
 	//printHouseData(yourHouse);
 	myHouse.print();
 	yourHouse.print();
+	otherHouse.print();
 
 
 	cout << endl << endl;

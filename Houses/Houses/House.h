@@ -9,6 +9,10 @@ class House
 {
 public:
 
+	House();
+	House(string name, int numStories, int numWindows, string color);
+	~House();
+
 	// Below are our setters.
 	void setNumStories(int numStories);
 	void setNumWindows(int numWindows);
