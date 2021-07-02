@@ -76,6 +76,19 @@ int main() noexcept
 	myPtr = nullptr;
 
 
+
+	cout << endl;
+	cout << "~~~~~~~~~~~~~~~~~~" << endl << endl;
+	cout << "Dynamically allocating a boolean variable: " << endl;
+	bool * myBoolptr = new bool{ true };
+	cout << boolalpha;
+	cout << "myBoolPtr = " << myBoolptr << endl;
+	cout << "*myBoolPtr = " << *myBoolptr << endl;
+	cout << noboolalpha;
+
+	delete myBoolptr;
+	myBoolptr = nullptr;
+
 	cout << endl << endl;
 	system("pause");
 	return 0;
