@@ -34,10 +34,22 @@ int main()
 	cout << endl;
 
 
+	cout << "Setting myIntPtr = nullptr..." << endl;
+	//myIntPtr = nullptr;
+	
+	cout << "Should print 00000000, but program crashes when I try to print the value." << endl;
+	cout << "Verified by creating a dynamically allocated integer initialized to nullptr, and printing that out to the console." << endl;
+	//printPtr("myIntPtr", myIntPtr);
+	//printPtrValue("myIntPtr", myIntPtr);
+	cout << endl;
 
+	cout << "Calling the delete operator on myIntPtr..." << endl;
 	delete myIntPtr;
 
-	myIntPtr = nullptr;
+	cout << "Program crashes if I try to print the value to the console." << endl;
+	//printPtr("myIntPtr", myIntPtr);
+	//printPtrValue("myIntPtr", myIntPtr);
+	cout << endl;
 
 	system("pause");
 	return 0;
