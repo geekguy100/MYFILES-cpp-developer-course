@@ -1,0 +1,64 @@
+Rectangle 0:
+	Perimeter: 28
+	Area: 24
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 1:
+	Perimeter: 28
+	Area: 40
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 2:
+	Perimeter: 18
+	Area: 20
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 3:
+	Perimeter: 28
+	Area: 48
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 4:
+	Perimeter: 56
+	Area: 160
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 5:
+	Perimeter: 32
+	Area: 60
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 6:
+	Perimeter: 22
+	Area: 30
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 7:
+	Perimeter: 20
+	Area: 25
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 8:
+	Perimeter: 12
+	Area: 8
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 9:
+	Perimeter: 20
+	Area: 9
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 10:
+	Perimeter: 8
+	Area: 3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 11:
+	Perimeter: 18
+	Area: 14
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 12:
+	Perimeter: 34
+	Area: 72
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 13:
+	Perimeter: 48
+	Area: 144
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 14:
+	Perimeter: 22
+	Area: 30
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Rectangle 15:
+	Perimeter: 42
+	Area: 110
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
