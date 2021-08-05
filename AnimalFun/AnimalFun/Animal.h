@@ -1,0 +1,26 @@
+#ifndef ANIMAL_H
+#define ANIMAL_H
+
+#include <string>
+
+class Animal
+{
+public:
+	Animal(std::string const & name, double weight);
+
+	std::string getName() const noexcept;
+	double getWeight() const noexcept;
+
+	void setName(std::string const & name) noexcept;
+	void setWeight(double weight) noexcept;
+
+	std::string makeNoise() const noexcept;
+
+
+private:
+	std::string name;
+	double weight;
+};
+
+
+#endif // !ANIMAL_H
