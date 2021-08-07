@@ -1,4 +1,5 @@
 #include "Animal.h"
+#include "Dog.h"
 #include <iostream>
 #include <string>
 
@@ -14,11 +15,13 @@ int main()
 	double weight;
 	cin >> weight;
 
-	Animal animal{ name, weight };
+	Dog animal{ "Cockapoo", name, weight };
 
 	cout << endl;
 	cout << animal.getName() << "\t" << animal.getWeight() << endl;
 	cout << animal.makeNoise() << endl;
+	animal.digHole();
+	animal.chaseCat();
 
 
 	cout << endl;
