@@ -14,7 +14,8 @@ public:
 	void setName(std::string const & name) noexcept;
 	void setWeight(double weight) noexcept;
 
-	virtual std::string makeNoise() const noexcept;
+	virtual std::string makeNoise() const noexcept = 0;
+	virtual std::string eat() const noexcept = 0;
 
 
 private:

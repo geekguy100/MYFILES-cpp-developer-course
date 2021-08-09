@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	cout << "Enter name for animal: ";
+	/*cout << "Enter name for animal: ";
 	string name;
 	getline(cin, name);
 
@@ -21,8 +21,15 @@ int main()
 	cout << animal.getName() << "\t" << animal.getWeight() << endl;
 	cout << animal.makeNoise() << endl;
 	animal.digHole();
-	animal.chaseCat();
+	animal.chaseCat();*/
 
+	Animal* dogPtr{ new Dog{"Pug", "Fido", 22} };
+	cout << "Make noise: " << dogPtr->makeNoise() << endl;
+	cout << "Eat: " << dogPtr->eat() << endl;
+
+
+	delete dogPtr;
+	dogPtr = nullptr;
 
 	cout << endl;
 	system("pause");

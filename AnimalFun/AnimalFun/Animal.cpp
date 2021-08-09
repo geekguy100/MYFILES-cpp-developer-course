@@ -24,8 +24,3 @@ void Animal::setWeight(double weight) noexcept
 {
 	this->weight = weight;
 }
-
-std::string Animal::makeNoise() const noexcept
-{
-	return "unknown";
-}

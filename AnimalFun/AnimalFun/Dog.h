@@ -13,7 +13,8 @@ public:
 	void digHole() const noexcept;
 	void chaseCat() const noexcept;
 
-	virtual std::string makeNoise() const noexcept;
+	std::string makeNoise() const noexcept;
+	std::string eat() const noexcept;
 
 private:
 	std::string breed;

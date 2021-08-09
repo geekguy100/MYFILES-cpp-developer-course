@@ -24,3 +24,8 @@ std::string Dog::makeNoise() const noexcept
 {
 	return "Bark Bark!";
 }
+
+std::string Dog::eat() const noexcept
+{
+	return "I love eating dog food!";
+}
