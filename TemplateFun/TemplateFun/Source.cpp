@@ -1,42 +1,57 @@
 #include <iostream>
 #include <string>
+#include "Swapper.h"
 
 using namespace std;
 
-double getMax(double a, double b);
-int getMax(int a, int b);
-string getMax(const string & a, const string & b);
+
+template<class T>
+T getMax(const T & a, const T & b);
+template<class T>
+T getMin(const T & a, const T & b);
 int main()
 {
-	string nameOne{ "Apple" };
-	string nameTwo{ "apple" };
+	Swapper<int> intSwapper{ 5, 10 };
+	Swapper<string> stringSwapper{ "John", "Bob" };
+
+	string nameOne{ "John" };
+	string nameTwo{ "Andrew" };
 
 	cout << getMax(12, 13) << endl;
 	cout << getMax(1.23, 2.22) << endl;
 	cout << getMax(nameOne, nameTwo) << endl;
+	cout << endl << endl;
+
+	cout << "Testing the Swapper:" << endl;
+	cout << intSwapper.getFirst() << "  " << intSwapper.getSecond() << endl;
+	cout << stringSwapper.getFirst() << "  " << stringSwapper.getSecond() << endl;
+	intSwapper.swap();
+	stringSwapper.swap();
+	cout << "Swapping..." << endl;
+	cout << intSwapper.getFirst() << "  " << intSwapper.getSecond() << endl;
+	cout << stringSwapper.getFirst() << "  " << stringSwapper.getSecond() << endl;
+	cout << endl << endl;
+
+	cout << getMin(nameOne, nameTwo) << endl;
+	cout << getMin(1999, 2000) << endl;
+	cout << getMin<string>("Ethan","Steven") << endl;
 
 	system("pause");
 	return 0;
 }
 
-double getMax(double a, double b)
+template<class T>
+T getMax(const T & a, const T & b)
 {
-	double max;
-	(a > b) ? (max = a) : (max = b);
-
+	T max;
+	(a > b) ? max = a : max = b;
 	return max;
 }
 
-int getMax(int a, int b)
+template<class T>
+T getMin(const T & a, const T & b)
 {
-	int max;
-	(a > b) ? (max = a) : (max = b);
-	return max;
-}
-
-string getMax(const string & a, const string & b)
-{
-	string max;
-	(a > b) ? (max = a) : (max = b);
-	return max;
+	T min;
+	(a < b) ? min = a : min = b;
+	return min;
 }
