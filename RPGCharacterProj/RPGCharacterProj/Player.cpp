@@ -2,7 +2,8 @@
 
 Player::Player(const std::string & name, Race race, int hitPoints, int magicPoints)
 	:name{ name }, race{ race }, hitPoints{ hitPoints }, magicPoints{ magicPoints }
-{}
+{
+}
 
 std::string Player::getName() const noexcept
 {
@@ -41,6 +42,11 @@ int Player::getHitPoints() const noexcept
 int Player::getMagicPoints() const noexcept
 {
 	return this->magicPoints;
+}
+
+int Player::getMaxClasses() noexcept
+{
+	return MAX_CLASSES;
 }
 
 void Player::setName(const std::string & name) noexcept

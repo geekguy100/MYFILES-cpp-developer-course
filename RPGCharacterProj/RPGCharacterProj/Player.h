@@ -14,6 +14,7 @@ public:
 	Race getRaceValue() const noexcept;
 	int getHitPoints() const noexcept;
 	int getMagicPoints() const noexcept;
+	static int getMaxClasses() noexcept;
 
 	void setName(const std::string & name) noexcept;
 	void setRace(Race race) noexcept;
@@ -28,6 +29,8 @@ private:
 	Race race;
 	int hitPoints;
 	int magicPoints;
+
+	const static int MAX_CLASSES{ 3 };
 };
 
 

@@ -11,24 +11,32 @@ void displayPrompt();
 Player * createPlayer(int classNum);
 void displayCharacters(const vector<Player*> & players);
 Player::Race promptRace();
+
 int main()
 {
 	vector<Player*> playerVector;
 
-	// Priming Read
-	int input{ -1 };
-	displayPrompt();
-	cin >> input;
+	int input{ 0 };
 
 	// Keep prompting user to create characters
 	// until they no longer want to.
-	while (input != 0)
+	do
 	{
-		playerVector.push_back(createPlayer(input));
-
 		displayPrompt();
 		cin >> input;
-	}
+
+		// User entered an invalid input; Prompt them to enter a valid one.
+		if (input < 0 || input > Player::getMaxClasses())
+		{
+			cerr << endl;
+			cerr << "ERROR: Invalid input. Please enter a valid selection." << endl;
+			continue;
+		}
+
+		if (input != 0)
+			playerVector.push_back(createPlayer(input));
+	} 
+	while (input != 0);
 
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	// Display all characters created to 
@@ -81,7 +89,7 @@ Player * createPlayer(int classNum)
 		player = new Mage{ name, race, 150, 150 };
 		break;
 	default: // Error
-		cerr << "ERROR: cannot create a class with a classNum > 3" << endl;
+		cerr << "ERROR: cannot create a class with a classNum > " << Player::getMaxClasses() << endl;
 		return nullptr;
 	}
 	
@@ -92,35 +100,37 @@ Player * createPlayer(int classNum)
 // Returns - the Race selected.
 Player::Race promptRace()
 {
-	cout << "What is your character's race?" << endl;
-	cout << "\t1 - Human" << endl
-		<< "\t2 - Elf" << endl
-		<< "\t3 - Dwarf" << endl
-		<< "\t4 - Orc" << endl
-		<< "\t5 - Troll" << endl
-		<< "INPUT: ";
-
-	int raceInput;
-	cin >> raceInput;
-	cout << endl;
-
-	switch (raceInput)
+	int raceInput{ -1 };
+	do
 	{
-	case 1:
-		return Player::HUMAN;
-	case 2:
-		return Player::ELF;
-	case 3:
-		return Player::DWARF;
-	case 4:
-		return Player::ORC;
-	case 5:
-		return Player::TROLL;
-	default:
-		cerr << "ERROR: Could not select a race with input '" << raceInput 
-			<< "'. Defaulting to race HUMAN" << endl;
-		return Player::HUMAN;
-	}
+		cout << "What is your character's race?" << endl;
+		cout << "\t1 - Human" << endl
+			<< "\t2 - Elf" << endl
+			<< "\t3 - Dwarf" << endl
+			<< "\t4 - Orc" << endl
+			<< "\t5 - Troll" << endl
+			<< "INPUT: ";
+
+		cin >> raceInput;
+		cout << endl;
+
+		switch (raceInput)
+		{
+		case 1:
+			return Player::HUMAN;
+		case 2:
+			return Player::ELF;
+		case 3:
+			return Player::DWARF;
+		case 4:
+			return Player::ORC;
+		case 5:
+			return Player::TROLL;
+		default:
+			cerr << "ERROR: Invalid input. Please enter a valid selection." << endl;
+			break;
+		}
+	} while (raceInput < 1 || raceInput > 5);
 }
 
 // Displays a prompt for the user to choose a character to create or
