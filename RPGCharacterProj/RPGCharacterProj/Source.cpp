@@ -131,6 +131,9 @@ Player::Race promptRace()
 			break;
 		}
 	} while (raceInput < 1 || raceInput > 5);
+
+	// In some extraordinary case, return HUMAN.
+	return Player::HUMAN;
 }
 
 // Displays a prompt for the user to choose a character to create or
