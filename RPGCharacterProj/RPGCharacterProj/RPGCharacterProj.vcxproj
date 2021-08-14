@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{6DEF160C-FD04-4EF5-A5BE-ABFF465BF2B4}</ProjectGuid>
-    <RootNamespace>AnimalFun</RootNamespace>
+    <ProjectGuid>{A73A341E-F72B-40AB-9F1C-887D9CD64D1D}</ProjectGuid>
+    <RootNamespace>RPGCharacterProj</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -115,17 +115,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Animal.h" />
-    <ClInclude Include="Cat.h" />
-    <ClInclude Include="Dog.h" />
-    <ClInclude Include="Test.h" />
-    <ClInclude Include="Test2.h" />
+    <ClCompile Include="Mage.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Priest.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Animal.cpp" />
-    <ClCompile Include="Cat.cpp" />
-    <ClCompile Include="Dog.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClInclude Include="Mage.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Priest.h" />
+    <ClInclude Include="Warrior.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
