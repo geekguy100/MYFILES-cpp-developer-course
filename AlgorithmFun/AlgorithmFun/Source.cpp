@@ -15,13 +15,10 @@ int main()
 	vector<int> myVector;
 	fillVector(myVector);
 	printVector(myVector);
-	countFives(myVector);
 
-	cout << "Replacing 5s with 99s..." << endl;
-	//replace(start_iterator, end_iterator, elem_to_replace, replacing_element).
-	replace(myVector.begin(), myVector.end(), 5, 99);
+	cout << "Sorting vector..." << endl;
+	sort(myVector.begin(), myVector.end());
 
-	countFives(myVector);
 	printVector(myVector);
 
 	cout << endl;
